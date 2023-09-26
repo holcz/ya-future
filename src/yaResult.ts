@@ -50,7 +50,6 @@ export class YaErrorResult<T, E = undefined> extends Error implements YaResultFu
   }
 }
 
-
 class YaSuccessResult<T, E = never> implements YaResultFuncs<T, E> {
     readonly resultType: 'success' = 'success' as const;
 

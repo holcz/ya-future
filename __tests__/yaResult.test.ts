@@ -71,6 +71,21 @@ describe('YaResult', () => {
         }
     });
 
+    it('should be able to map to different type', () => {
+        const success = yaForTest('success');
+
+        const mapped = 
+            success
+                .map((d) => `nice string: ${d}`)
+                .map((d) => `${d}, it is!`);
+        if (YaResult.isSuccess(mapped)) {
+            expect(mapped.data).toBe('nice string: 1, it is!');
+        } else {
+            expect(true).toBe(false);
+        }
+    });
+
+
     it('should be able to flatMap on success', () => {
         const success = yaForTest('success');
 
@@ -88,6 +103,20 @@ describe('YaResult', () => {
         const mapped = error.flatMap((d) => YaResult.success(d + 1));
         if (YaResult.isError(mapped)) {
             expect(mapped.message).toBe('Error');
+        } else {
+            expect(true).toBe(false);
+        }
+    });
+
+    it('should be able to flatMap to different type', () => {
+        const success = yaForTest('success');
+
+        const mapped = 
+            success
+                .flatMap((d) => YaResult.success(`nice string: ${d}`))
+                .flatMap((d) => YaResult.success(`${d}, it is!`));
+        if (YaResult.isSuccess(mapped)) {
+            expect(mapped.data).toBe('nice string: 1, it is!');
         } else {
             expect(true).toBe(false);
         }
