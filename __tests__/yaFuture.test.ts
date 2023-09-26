@@ -77,8 +77,8 @@ describe('YaResult', () => {
         const result = await 
             aPromise
                 .flatMap((d) => Promise.resolve(d + 1))
-                .flatMap(d => Promise.resolve(YaResult.success(d + 1)))
                 .map(d => d + 1)
+                .flatMap(d => Promise.resolve(YaResult.success(d + 1)))
                 .map(d => YaResult.success(d + 1))
         if (YaResult.isSuccess(result)) {
             expect(result.data).toBe(5);

@@ -111,4 +111,9 @@ export class YaFuture<T, E> implements Promise<YaResult<T, E>> {
                 });
         })
     }
+
+    public static ofP<T, E>(p: Promise<T>, errorMessage?: string, errorPayload?: E): YaFuture<T, E> {
+        return YaFuture.of(() => p, errorMessage, errorPayload);
+    }
+
 }

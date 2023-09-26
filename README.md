@@ -1,4 +1,4 @@
-# Yet Another Future
+# 🚀 Yet Another Future 🚀
 
 Opinionated Future implementation inspired by the Scala Future and the Mondadic approach, but for TS devs with FP mindset
 
@@ -6,7 +6,7 @@ Opinionated Future implementation inspired by the Scala Future and the Mondadic 
 ```
 // Example 1
 const result = await 
-    YaFuture.of<number, string>(() => Promise.resolve(1));
+    YaFuture.ofP(Promise.resolve(1));
         .flatMap((d) => Promise.resolve(d + 1))
         .map(d => d + 1)
         .flatMap(d => Promise.resolve(YaResult.success(d + 1)))
